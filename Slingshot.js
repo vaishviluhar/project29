@@ -7,27 +7,27 @@ class SlingShot{
             length: 10
         }
 
-                polygon = Bodies.circle(50, 200, 20);
-                World.add(world, polygon);
-        
-                slingshot = new Slingshot(this.polygon, {x : 100, y : 200});
-               World.add(world, this.sling);
-        }
-    
-         attach(body){
-         this.sling.bodyA = body;
-         }
-          fly(){
-        this.sling.bodyA = null;
-        }
+        this.pointB = pointB;
+        this.Slingshot = Constraint.create(options);
+        World.add(world, this.Slingshot)
 
-        display(){
-            imageMode(CENTER);
-            image(polygonI, polygon.position.x, polygon.positiom.y, 40, 40);
-      
+        this.sling1 = loadImage('sprites/sling1.png');
+        this.sling2 = loadImage('sprites/sling2.png');
+        this.sling3 = loadImage('sprites/sling3.png');  
+    }
+    
+    fly(){
+        this.sling.bodyA = null;
+    }
+
+    display(){
+        image(this.sling1,200,20);
+        image(this.sling2,170,20);
         if(this.sling.bodyA){
             var pointA = this.sling.bodyA.position;
             var pointB = this.pointB;
+            strokeWeight(4);
+            line(pointA.x, pointA.y, pointB.x, pointB.y);
         }
-        }
-        }
+    }
+}
